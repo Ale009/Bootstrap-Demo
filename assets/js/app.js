@@ -199,11 +199,15 @@ var linkAlumnos = document.getElementById('link-alumnos');
 
 linkAlumnos.addEventListener('click', function(){
     $.ajax({
-        url: 'http://localhost:9002/kalum-notas/v1/alumnos',
-        type: 'GET',
-        headers: {'Authorization':'Bearer by eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzE0MDA5MTcsInVzZXJfbmFtZSI6ImFzYWxhemFyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI5MzZkZjYzYy1mMDRlLTQyYzYtOTZlNy05MWVlMDRkNTg2Y2YiLCJjbGllbnRfaWQiOiJrYWx1bWFwcCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.RnOKmoZBQ_OBWxEBG_DDA0wa2sDEqiZG8dwrdVbmRxI'},
+        url: 'https://swapi.dev/api/people',
+        //type: 'GET',
+        //Headers: {'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzE0MDUzMTIsInVzZXJfbmFtZSI6ImFzYWxhemFyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiJiNTFlYzNlZS1mMTQxLTQ4YTEtYWRjNy0xYWZiODlkNjdhNWIiLCJjbGllbnRfaWQiOiJrYWx1bWFwcCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.KDyUMqP7yN_0537WHPtN_dW-u0hU-qDVQSVdTwBRqVU'},
         success: function (data) {
-            console.log(data);
+            var listAlumnos = document.getElementById('lista-alumnos');
+            var salida =  '';
+            $.each(data,function(index,value) {
+                console.log(value)
+            });
         },
         error: function(){
             alert(`Ocurrió un error`);
