@@ -196,22 +196,75 @@ $(function(){
 */
 
 var linkAlumnos = document.getElementById('link-alumnos');
-
 linkAlumnos.addEventListener('click', function(){
     $.ajax({
         url: 'https://swapi.dev/api/people',
-        //type: 'GET',
+        method: 'GET',
         //Headers: {'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzE0MDUzMTIsInVzZXJfbmFtZSI6ImFzYWxhemFyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiJiNTFlYzNlZS1mMTQxLTQ4YTEtYWRjNy0xYWZiODlkNjdhNWIiLCJjbGllbnRfaWQiOiJrYWx1bWFwcCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.KDyUMqP7yN_0537WHPtN_dW-u0hU-qDVQSVdTwBRqVU'},
         success: function (data) {
-            var listAlumnos = document.getElementById('lista-alumnos');
+            var peopleList = document.getElementById('people-list');
             var salida =  '';
-            $.each(data,function(index,value) {
-                console.log(value)
-            });
+            $.each(data.results,function(index,value) {
+                salida += `
+                <div class="card" style="width: 18rem;">
+                <img src="./assets/images/${value.name}.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">${value.name}</h5>
+                  <p class="card-text">Height: ${value.height}</p>
+                  <p class="card-text">Gender: ${value.gender}</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+              `;
+                peopleList.innerHTML = salida; 
+                $('#planets-list').html("");
+            });           
         },
-        error: function(){
+        error: function(e){
             alert(`Ocurrió un error`);
             console.log(e);
         }
     });
-});
+
+    });
+
+    function aleatorio(minimo, maximo) {
+        return Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
+    }
+
+    var linkPlanets = document.getElementById('link-planets');
+    linkPlanets.addEventListener('click', function(){
+        $.ajax({
+            url: 'https://swapi.dev/api/planets',
+            method: 'GET',
+            //Headers: {'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzE0MDUzMTIsInVzZXJfbmFtZSI6ImFzYWxhemFyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiJiNTFlYzNlZS1mMTQxLTQ4YTEtYWRjNy0xYWZiODlkNjdhNWIiLCJjbGllbnRfaWQiOiJrYWx1bWFwcCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.KDyUMqP7yN_0537WHPtN_dW-u0hU-qDVQSVdTwBRqVU'},
+            success: function (data) {
+                var planetList = document.getElementById('planets-list'); 
+                var salida =  '';
+                $.each(data.results,function(index,value) {
+                    var color = ['btn btn-warning','btn btn-secondary','btn btn-success']
+                    var number = aleatorio(0,2);
+
+                    salida += `
+                    <div class="card" style="width: 18rem;">
+                    <img src="./assets/images/${value.name}.png" class="card-img-top" alt="...">
+                    <div class="card-color[number]">
+                      <h5 class="card-title">${value.name}</h5>
+                      <p class="card-text">Climate: ${value.climate}</p>
+                      <p class="card-text">Gravity: ${value.gravity}</p>
+                      <a href="#" class="${color[number]}" >Go film</a>
+                    </div>
+                  </div>
+                  `;
+                  
+                  planetList.innerHTML = salida;
+                  $('#people-list').html("");
+                });
+            },
+            error: function(e){
+                alert(`Ocurrió un error`);
+                console.log(e);
+            }
+        });
+    });
+

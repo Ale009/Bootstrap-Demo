@@ -9,10 +9,10 @@
     <title>Listar Alumnos</title>
 </head>
 <body>
-    <div class="container">
-        <div id="header"> 
-            <!--INICIO NAVBAR-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container mt-5">
+      <div class="row">    
+         <!--INICIO NAVBAR-->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                   <a class="navbar-brand" href="#">KALUM</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,8 +31,8 @@
                           Catálogos
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="#" id="link-alumnos">Alumnos</a></li>
-                          <li><a class="dropdown-item" href="#">Carreras</a></li>
+                          <li><a class="dropdown-item" href="#" id="link-alumnos">People</a></li>
+                          <li><a class="dropdown-item" href="#"id="link-planets">Planets</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="#">Módulos</a></li>
                         </ul>
@@ -45,13 +45,19 @@
                     </form>
                   </div>
                 </div>
-              </nav>
-              <!--FIN NAVBAR-->
+          </nav>
+        <!--FIN NAVBAR-->    
+        <!--INICIO LISTA NOMBRES-->
+        <div class="row mt-5" id="people-list">
+                          
 
-            <div class="row col-md-8" id="lista-alumnos">
-
-            </div>
-        </div>
+        </div> 
+        <!--FIN LISTA NOMBRES-->
+        <!--INICIO LISTA NOMBRES-->
+        <div class="row mt-2" id="planets-list">
+          
+        </div>  
+      </div>
     </div>
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
